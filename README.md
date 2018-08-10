@@ -35,3 +35,14 @@ small data stores (up to 0.5GB) and acts the same as any local running mongodb s
 Allows you to create a CI/CD environment directly linked to your github repository. Can be set up to automatically push when master deployments
 occur, and can be turned on and off at ease. Hosting when supplied a credit card gives you a months worth of hosting time, which allows you
 to keep a single application running 24/7, providing you with logs, plugins, and more to make deployments manageable.
+
+## Running locally
+Running locally requires the following as dependencies. 
+
+Java 8+, Maven 3+
+
+1) Clone / Download the zip from this repository. 
+2) Go to file location.
+3) Open up powershell.
+4) run "mvn spring-boot:run"
+Clone / Download the zip from this repo.
