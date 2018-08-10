@@ -45,4 +45,3 @@ Java 8+, Maven 3+
 2) Go to file location.
 3) Open up powershell.
 4) run "mvn spring-boot:run"
-Clone / Download the zip from this repo.
