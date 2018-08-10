@@ -22,16 +22,21 @@ public class ProductsController {
 	
 	@GetMapping("/")
 	public List<Price> list() {
+		//Fetches a list of prices which are connected to products
 		return this.productService.getAvailablePrices();
 	}
 	
 	@GetMapping("/{id}")
 	public Product get(@PathVariable("id") long id) {
+		//gets a single product with price
+		//if product doesn't exist returns an empty product
 		return this.productService.getProduct(id);
 	}
 	
 	@PutMapping("/{id}")
 	public Boolean put(@PathVariable("id") long id, @RequestBody Price price) {
+		//attempts to create a price for a product
+		//if product doesn't exist returns false
 		return this.productService.addPrice(id, price);
 	}
 }
