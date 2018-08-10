@@ -9,6 +9,14 @@ public class Price {
 	private Long id;
 	private Double value;
 	private String currency_code;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Double getValue() {
 		return value;

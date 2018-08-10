@@ -1,5 +1,6 @@
 package com.hood.myRetail.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,12 @@ public class ProductService implements IProductService {
 	private IProductRepository productRepository;
 	@Autowired
 	private PriceRepository priceRepository;
+	
+	public List<Price> getAvailablePrices() {
+		List<Price> prices = this.priceRepository.findAll();
+		
+		return prices;
+	}
 	
 	public Product getProduct(long id) {
 		Product product = new Product();
@@ -49,5 +56,24 @@ public class ProductService implements IProductService {
 		}
 		
 		return product;
+	}
+	
+	public Boolean addPrice(long id, Price price) {
+		try {
+			String productJson = this.productRepository.getProductInfo(id);
+			
+			if(productJson.length() < 1) {
+				return false;
+			}
+			
+			price.setId(id);
+			
+			this.priceRepository.save(price);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return true;
 	}
 }
