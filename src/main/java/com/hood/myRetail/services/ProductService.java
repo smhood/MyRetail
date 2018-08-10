@@ -1,5 +1,6 @@
 package com.hood.myRetail.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,10 +22,40 @@ public class ProductService implements IProductService {
 	@Autowired
 	private PriceRepository priceRepository;
 	
-	public List<Price> getAvailablePrices() {
+	public List<Product> getAvailablePrices() {
+		List<Product> products = new ArrayList<Product>();
 		List<Price> prices = this.priceRepository.findAll();
 		
-		return prices;
+		for(Price price : prices) {
+			try {
+				Product product = new Product();
+				String productJson = this.productRepository.getProductInfo(price.getId());
+				
+				//If string is empty, no results were found.
+				if(productJson.length() < 1) {
+					continue;
+				}
+				
+				//Attempts to map json to jsonnode so we can obtain individual values.
+				ObjectMapper mapper = new ObjectMapper();
+				JsonNode root = mapper.readTree(productJson);
+				
+				//Gets the node with the information we care about.
+				JsonNode item = root.findPath("item");
+				
+				//Set values to product
+				product.setId(item.path("tcin").asLong());
+				product.setName(item.path("product_description").path("title").asText());
+				product.setCurrent_price(price);
+				
+				products.add(product);
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		
+		return products;
 	}
 	
 	public Product getProduct(long id) {

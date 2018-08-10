@@ -21,7 +21,7 @@ public class ProductsController {
 	private IProductService productService;
 	
 	@GetMapping("/")
-	public List<Price> list() {
+	public List<Product> list() {
 		//Fetches a list of prices which are connected to products
 		return this.productService.getAvailablePrices();
 	}
