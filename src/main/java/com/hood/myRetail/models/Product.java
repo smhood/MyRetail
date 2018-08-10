@@ -11,6 +11,10 @@ public class Product {
 		this.current_price = current_price;
 	}
 	
+	public Product() {
+		
+	}
+
 	public Long getId() {
 		return id;
 	}

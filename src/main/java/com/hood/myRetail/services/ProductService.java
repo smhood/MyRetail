@@ -11,30 +11,43 @@ import com.hood.myRetail.interfaces.IProductRepository;
 import com.hood.myRetail.interfaces.IProductService;
 import com.hood.myRetail.models.Price;
 import com.hood.myRetail.models.Product;
+import com.hood.myRetail.repositories.PriceRepository;
 
 @Service
 public class ProductService implements IProductService {
 	@Autowired
 	private IProductRepository productRepository;
-
+	@Autowired
+	private PriceRepository priceRepository;
+	
 	public Product getProduct(long id) {
+		Product product = new Product();
+		Price price = new Price();
 		try {
 			String productJson = this.productRepository.getProductInfo(id);
 			
 			if(productJson.length() < 1) {
-				return null;
+				return product;
 			}
 			
 			ObjectMapper mapper = new ObjectMapper();
 			JsonNode root = mapper.readTree(productJson);
 			JsonNode item = root.findPath("item");
 
-			return new Product(item.path("tcin").asLong(), item.path("product_description").path("title").asText(), null);
+			Optional<Price> result = this.priceRepository.findById(id);
+			
+			if(result.isPresent()) {
+				price = result.get();
+			}
+			
+			product.setId(item.path("tcin").asLong());
+			product.setName(item.path("product_description").path("title").asText());
+			product.setCurrent_price(price);
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
 		}
 		
-		return null;
+		return product;
 	}
 }

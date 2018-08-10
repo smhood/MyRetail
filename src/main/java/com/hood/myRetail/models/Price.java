@@ -1,19 +1,27 @@
 package com.hood.myRetail.models;
 
-public class Price {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "prices")
+public class Price {
+	@Id
+	private Long id;
 	private Double value;
 	private String currency_code;
-	
+
 	public Double getValue() {
 		return value;
 	}
+
 	public void setValue(Double value) {
 		this.value = value;
 	}
+
 	public String getCurrency_code() {
 		return currency_code;
 	}
+
 	public void setCurrency_code(String currency_code) {
 		this.currency_code = currency_code;
 	}
