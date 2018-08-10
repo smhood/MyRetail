@@ -1,9 +1,9 @@
 ## Techstack
-Web Service Backend: Spring Boot
+**Web Service Backend**: Spring Boot
 
-Datastore: MongoDb (https://mlab.com)
+**Datastore**: MongoDb (https://mlab.com)
 
-Cloud Service: Heroku (https://heroku.com)
+**Cloud Service**: Heroku (https://heroku.com)
 
 ## Production Endpoint
 https://hood-interview.herokuapp.com/api/v1/products/
