@@ -12,7 +12,7 @@ https://hood-interview.herokuapp.com/api/v1/products/
 
 1) GET https://hood-interview.herokuapp.com/api/v1/products/
 
-Returns back a list of the prices available to choose from, from this you may see Product Ids in which these prices have been assigned too.
+Returns a list of prices products.
 
 2) GET https://hood-interview.herokuapp.com/api/v1/products/{id}
 
