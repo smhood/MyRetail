@@ -1,6 +1,8 @@
 ## Techstack
 Web Service Backend: Spring Boot
+
 Datastore: MongoDb (https://mlab.com)
+
 Cloud Service: Heroku (https://heroku.com)
 
 ## Production Endpoint
